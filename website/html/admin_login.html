@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy - دخول الإدارة</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, Tahoma, sans-serif;
+
+            min-height: 100vh;
+
+            background: #f6f5fb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        /* =========================
+           بطاقة تسجيل الدخول
+        ========================= */
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 420px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 20px 60px rgba(45, 40, 80, 0.12);
+
+            text-align: center;
+
+        }
+
+
+        /* =========================
+           الشعار
+        ========================= */
+
+        .logo {
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #7668d8;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           أيقونة الإدارة
+        ========================= */
+
+        .admin-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            border-radius: 50%;
+
+            background: #f0eefb;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 35px;
+
+        }
+
+
+        h1 {
+
+            color: #302d3d;
+
+            font-size: 25px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .subtitle {
+
+            color: #92909d;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           الحقول
+        ========================= */
+
+        .field {
+
+            text-align: right;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .field label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #494654;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .field input {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: 1px solid #e5e3ed;
+
+            border-radius: 12px;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: #fafafd;
+
+            transition: 0.25s;
+
+        }
+
+
+        .field input:focus {
+
+            border-color: #7668d8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(118, 104, 216, 0.10);
+
+        }
+
+
+        /* =========================
+           رسالة الخطأ
+        ========================= */
+
+        .error {
+
+            background: #fff1f1;
+
+            color: #d9534f;
+
+            border: 1px solid #f3cccc;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        /* =========================
+           زر الدخول
+        ========================= */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #7668d8;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+        }
+
+
+        .login-button:hover {
+
+            background: #6658c9;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(118, 104, 216, 0.25);
+
+        }
+
+
+        /* =========================
+           العودة للحجز
+        ========================= */
+
+        .back-link {
+
+            display: block;
+
+            margin-top: 22px;
+
+            color: #7668d8;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+        }
+
+
+        .back-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-card">
+
+
+        <div class="logo">
+            Maw3dy
+        </div>
+
+
+        <div class="admin-icon">
+            🔐
+        </div>
+
+
+        <h1>
+            دخول الإدارة
+        </h1>
+
+
+        <p class="subtitle">
+            قم بتسجيل الدخول للوصول إلى لوحة الحجوزات
+        </p>
+
+
+
+        {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+
+        <form method="POST">
+
+
+            <!-- اسم المستخدم -->
+
+            <div class="field">
+
+                <label>
+                    اسم المستخدم
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="أدخل اسم المستخدم"
+                    required>
+
+            </div>
+
+
+
+            <!-- كلمة المرور -->
+
+            <div class="field">
+
+                <label>
+                    كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="أدخل كلمة المرور"
+                    required>
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="login-button">
+
+                تسجيل الدخول 🔐
+
+            </button>
+
+
+        </form>
+
+
+
+        <a
+            href="/"
+            class="back-link">
+
+            ← العودة إلى صفحة الحجز
+
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

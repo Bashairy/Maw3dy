@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy - الرئيسية</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, Tahoma, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8f7fc,
+                    #efedf9
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            text-align: center;
+
+        }
+
+
+        /* =========================
+           الشعار
+        ========================= */
+
+        .logo {
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #7668d8;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .subtitle {
+
+            color: #858292;
+
+            font-size: 16px;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        /* =========================
+           البطاقات
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 40px 30px;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 15px 45px
+                rgba(45, 40, 80, 0.10);
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+
+            border: 1px solid
+                rgba(118, 104, 216, 0.06);
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(45, 40, 80, 0.16);
+
+        }
+
+
+        /* =========================
+           الأيقونة
+        ========================= */
+
+        .icon {
+
+            width: 85px;
+
+            height: 85px;
+
+            border-radius: 50%;
+
+            background: #f0eefb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 25px;
+
+            font-size: 40px;
+
+        }
+
+
+        .card h2 {
+
+            color: #302d3d;
+
+            font-size: 23px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .card p {
+
+            color: #92909d;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           الزر
+        ========================= */
+
+        .button {
+
+            display: inline-block;
+
+            background: #7668d8;
+
+            color: white;
+
+            padding:
+                13px 28px;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        .admin .button {
+
+            background: #5f5a72;
+
+        }
+
+
+        /* =========================
+           أسفل الصفحة
+        ========================= */
+
+        .footer {
+
+            margin-top: 40px;
+
+            color: #aaa7b5;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================
+           الهاتف
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .logo {
+
+                font-size: 35px;
+
+            }
+
+
+            .subtitle {
+
+                margin-bottom: 30px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+
+            }
+
+
+            .card {
+
+                padding: 30px 25px;
+
+            }
+
+
+            .icon {
+
+                width: 70px;
+
+                height: 70px;
+
+                font-size: 32px;
+
+            }
+
+
+            .card h2 {
+
+                font-size: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- الشعار -->
+
+        <div class="logo">
+
+            Maw3dy
+
+        </div>
+
+
+        <p class="subtitle">
+
+            أهلاً بك 👋 اختر الطريقة المناسبة للمتابعة
+
+        </p>
+
+
+
+        <!-- البطاقات -->
+
+        <div class="cards">
+
+
+            <!-- بطاقة المستخدم -->
+
+            <a
+                href="/book"
+                class="card">
+
+
+                <div class="icon">
+
+                    📅
+
+                </div>
+
+
+                <h2>
+
+                    حجز موعد
+
+                </h2>
+
+
+                <p>
+
+                    احجز موعدك بسهولة واختر
+                    التاريخ والوقت المناسب لك.
+
+                </p>
+
+
+                <span class="button">
+
+                    ابدأ الحجز
+
+                </span>
+
+
+            </a>
+
+
+
+            <!-- بطاقة الإدارة -->
+
+            <a
+                href="/admin"
+                class="card admin">
+
+
+                <div class="icon">
+
+                    🔐
+
+                </div>
+
+
+                <h2>
+
+                    دخول الإدارة
+
+                </h2>
+
+
+                <p>
+
+                    الدخول إلى لوحة الإدارة
+                    لمتابعة وإدارة الحجوزات.
+
+                </p>
+
+
+                <span class="button">
+
+                    دخول الإدارة
+
+                </span>
+
+
+            </a>
+
+
+        </div>
+
+
+
+        <div class="footer">
+
+            Maw3dy © 2026
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
