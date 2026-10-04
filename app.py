@@ -27,7 +27,11 @@ def home():
 
         # التأكد من أن الموعد غير محجوز
         if booking_exists(date, time):
-            return "⚠️ هذا الموعد محجوز بالفعل، يرجى اختيار وقت آخر."
+
+            return render_template(
+                "bookink.html",
+                error="⚠️ هذا الموعد محجوز بالفعل، يرجى اختيار وقت آخر."
+            )
 
         # حفظ الحجز في قاعدة البيانات
         add_booking(
@@ -37,7 +41,7 @@ def home():
             time
         )
 
-        # إرسال إشعار إلى Telegram
+        # إرسال الإشعار إلى Telegram
         notify_booking(
             name,
             phone,
@@ -45,7 +49,14 @@ def home():
             time
         )
 
-        return "تم حفظ الحجز بنجاح وإرسال الإشعار إلى Telegram ✅"
+        # عرض رسالة نجاح جميلة في نفس الصفحة
+        return render_template(
+            "bookink.html",
+            success=True,
+            booking_name=name,
+            booking_date=date,
+            booking_time=time
+        )
 
     return render_template("bookink.html")
 

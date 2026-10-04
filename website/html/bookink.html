@@ -1,371 +1,861 @@
-
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Maw3dy | حجز موعد</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy - حجز موعد</title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
+
 
         body {
+
+            font-family: Arial, Tahoma, sans-serif;
+
+            background: #f6f5fb;
+
             min-height: 100vh;
-            background: linear-gradient(135deg, #f8f5ff, #eef7ff);
+
             display: flex;
-            justify-content: center;
+
             align-items: center;
-            padding: 25px;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            color: #302d3d;
+
         }
+
+
+        /* =========================
+           الحاوية الرئيسية
+        ========================= */
 
         .container {
+
             width: 100%;
+
             max-width: 950px;
+
             min-height: 570px;
+
             background: white;
+
             border-radius: 28px;
+
             overflow: hidden;
-            box-shadow: 0 15px 45px rgba(70, 60, 100, 0.12);
-            display: flex;
+
+            box-shadow:
+                0 20px 60px rgba(45, 40, 80, 0.12);
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
         }
 
-        /* الجانب التعريفي */
+
+        /* =========================
+           القسم الترحيبي
+        ========================= */
+
         .welcome {
-            width: 45%;
-            background: linear-gradient(145deg, #7567d8, #9b8de8);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #7668d8,
+                    #9b8ee8
+                );
+
             color: white;
-            padding: 55px 40px;
+
+            padding: 55px;
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+
         }
 
-        .welcome::before,
-        .welcome::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .welcome::before {
-            width: 230px;
-            height: 230px;
-            top: -80px;
-            left: -80px;
-        }
-
-        .welcome::after {
-            width: 300px;
-            height: 300px;
-            bottom: -150px;
-            right: -100px;
-        }
 
         .logo {
+
             font-size: 32px;
+
             font-weight: bold;
-            margin-bottom: 35px;
-            position: relative;
-            z-index: 1;
+
+            margin-bottom: 25px;
+
         }
+
 
         .welcome h1 {
+
             font-size: 38px;
-            line-height: 1.35;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+
+            line-height: 1.4;
+
+            margin-bottom: 18px;
+
         }
+
 
         .welcome p {
-            font-size: 17px;
+
+            font-size: 16px;
+
             line-height: 1.9;
+
             opacity: 0.9;
-            position: relative;
-            z-index: 1;
+
         }
 
-        .features {
+
+        .welcome-icon {
+
+            font-size: 70px;
+
             margin-top: 35px;
-            position: relative;
-            z-index: 1;
+
         }
 
-        .feature {
-            margin: 15px 0;
-            font-size: 15px;
-        }
 
-        /* نموذج الحجز */
+        /* =========================
+           قسم الحجز
+        ========================= */
+
         .booking {
-            width: 55%;
-            padding: 50px 55px;
+
+            padding: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
         }
+
 
         .booking h2 {
-            color: #302b45;
+
             font-size: 28px;
+
             margin-bottom: 8px;
+
         }
+
 
         .subtitle {
-            color: #888;
-            margin-bottom: 30px;
+
+            color: #92909d;
+
             font-size: 14px;
+
+            margin-bottom: 25px;
+
         }
 
-        .form-group {
-            margin-bottom: 19px;
+
+        /* =========================
+           الحقول
+        ========================= */
+
+        .field {
+
+            margin-bottom: 17px;
+
         }
 
-        label {
+
+        .field label {
+
             display: block;
-            margin-bottom: 8px;
-            color: #403b52;
+
+            margin-bottom: 7px;
+
             font-size: 14px;
+
             font-weight: bold;
+
+            color: #494654;
+
         }
 
-        input {
+
+        .field input {
+
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #e1dfea;
+
+            height: 48px;
+
+            border: 1px solid #e5e3ed;
+
             border-radius: 12px;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+
             outline: none;
-            font-size: 15px;
-            background: #faf9fc;
+
+            background: #fafafd;
+
             transition: 0.25s;
+
         }
 
-        input:focus {
-            border-color: #7567d8;
+
+        .field input:focus {
+
+            border-color: #7668d8;
+
             background: white;
-            box-shadow: 0 0 0 3px rgba(117, 103, 216, 0.1);
+
+            box-shadow:
+                0 0 0 3px rgba(118, 104, 216, 0.10);
+
         }
 
-        .row {
-            display: flex;
-            gap: 15px;
-        }
 
-        .row .form-group {
-            width: 50%;
-        }
+        /* =========================
+           زر الحجز
+        ========================= */
 
-        button {
+        .booking-button {
+
             width: 100%;
+
+            height: 50px;
+
             border: none;
-            padding: 15px;
+
             border-radius: 13px;
-            background: linear-gradient(135deg, #7567d8, #9586e7);
+
+            background: #7668d8;
+
             color: white;
-            font-size: 17px;
+
+            font-size: 16px;
+
             font-weight: bold;
+
             cursor: pointer;
+
+            margin-top: 8px;
+
             transition: 0.25s;
-            margin-top: 5px;
-            box-shadow: 0 8px 18px rgba(117, 103, 216, 0.22);
+
         }
 
-        button:hover {
+
+        .booking-button:hover {
+
+            background: #6658c9;
+
             transform: translateY(-2px);
-            box-shadow: 0 11px 22px rgba(117, 103, 216, 0.3);
+
+            box-shadow:
+                0 8px 20px rgba(118, 104, 216, 0.25);
+
         }
 
-        button:active {
+
+        .booking-button:active {
+
             transform: translateY(0);
+
         }
 
-        .note {
+
+        /* =========================
+           رسالة الخطأ
+        ========================= */
+
+        .error-message {
+
+            background: #fff1f1;
+
+            color: #d9534f;
+
+            padding: 14px 16px;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+
             text-align: center;
-            color: #999;
-            font-size: 12px;
-            margin-top: 15px;
+
+            border: 1px solid #f3cccc;
+
         }
 
-        /* الهاتف */
+
+        /* =========================
+           نافذة النجاح
+        ========================= */
+
+        .success-popup {
+
+            position: fixed;
+
+            top: 25px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(90%, 430px);
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 45px rgba(40, 35, 70, 0.18);
+
+            z-index: 1000;
+
+            animation: successShow 0.45s ease;
+
+        }
+
+
+        .success-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #e9f8ef;
+
+            color: #239653;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+        }
+
+
+        .success-popup h3 {
+
+            color: #302d3d;
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .success-popup p {
+
+            color: #858494;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           تفاصيل الموعد
+        ========================= */
+
+        .booking-details {
+
+            background: #f7f6fb;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            text-align: right;
+
+        }
+
+
+        .booking-detail {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 8px 0;
+
+            font-size: 13px;
+
+        }
+
+
+        .booking-detail span:first-child {
+
+            color: #858494;
+
+        }
+
+
+        .booking-detail span:last-child {
+
+            color: #302d3d;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           زر إغلاق رسالة النجاح
+        ========================= */
+
+        .close-success {
+
+            margin-top: 18px;
+
+            border: none;
+
+            background: #7668d8;
+
+            color: white;
+
+            padding: 11px 25px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .close-success:hover {
+
+            background: #6658c9;
+
+        }
+
+
+        /* =========================
+           حركة ظهور الرسالة
+        ========================= */
+
+        @keyframes successShow {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -20px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translate(-50%, 0);
+
+            }
+
+        }
+
+
+        /* =========================
+           الجوال
+        ========================= */
+
         @media (max-width: 750px) {
 
             body {
+
                 padding: 15px;
+
             }
+
 
             .container {
-                flex-direction: column;
-                border-radius: 22px;
+
+                grid-template-columns: 1fr;
+
             }
+
 
             .welcome {
-                width: 100%;
-                padding: 35px 25px;
+
+                padding: 35px;
+
                 min-height: 280px;
+
             }
 
-            .logo {
-                margin-bottom: 20px;
-            }
 
             .welcome h1 {
-                font-size: 28px;
+
+                font-size: 30px;
+
             }
 
-            .welcome p {
-                font-size: 14px;
+
+            .welcome-icon {
+
+                font-size: 45px;
+
+                margin-top: 20px;
+
             }
 
-            .features {
-                display: none;
-            }
 
             .booking {
-                width: 100%;
-                padding: 35px 25px;
+
+                padding: 30px;
+
             }
 
-            .booking h2 {
-                font-size: 24px;
-            }
-
-            .row {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .row .form-group {
-                width: 100%;
-            }
         }
+
+
     </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================
+         رسالة النجاح
+    ========================== -->
+
+    {% if success %}
+
+    <div class="success-popup" id="successPopup">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h3>
+            تم حجز موعدك بنجاح! 🎉
+        </h3>
+
+
+        <p>
+            تم تسجيل موعدك وإرسال إشعار الحجز.
+        </p>
+
+
+        <div class="booking-details">
+
+
+            <div class="booking-detail">
+
+                <span>
+                    👤 الاسم
+                </span>
+
+                <span>
+                    {{ booking_name }}
+                </span>
+
+            </div>
+
+
+            <div class="booking-detail">
+
+                <span>
+                    📅 التاريخ
+                </span>
+
+                <span>
+                    {{ booking_date }}
+                </span>
+
+            </div>
+
+
+            <div class="booking-detail">
+
+                <span>
+                    ⏰ الوقت
+                </span>
+
+                <span>
+                    {{ booking_time }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="close-success"
+            onclick="closeSuccess()">
+
+            حسناً
+
+        </button>
+
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =========================
+         الصفحة الرئيسية
+    ========================== -->
+
     <div class="container">
 
+
         <!-- القسم الترحيبي -->
+
         <div class="welcome">
 
             <div class="logo">
-                ✦ Maw3dy
+                Maw3dy
             </div>
 
+
             <h1>
-                احجز موعدك<br>
-                بكل سهولة ✨
+                موعدك صار أسهل ✨
             </h1>
 
+
             <p>
-                اختر الموعد المناسب لك وأرسل طلب الحجز
-                في ثوانٍ بسيطة.
+                احجز موعدك بكل سهولة وسرعة،
+                ودع Maw3dy يهتم بالباقي.
             </p>
 
-            <div class="features">
 
-                <div class="feature">
-                    ✓ حجز سريع وسهل
-                </div>
-
-                <div class="feature">
-                    ✓ تأكيد الموعد
-                </div>
-
-                <div class="feature">
-                    ✓ إشعار فوري بالحجز
-                </div>
-
+            <div class="welcome-icon">
+                📅
             </div>
 
         </div>
 
 
-        <!-- نموذج الحجز -->
+
+        <!-- قسم الحجز -->
+
         <div class="booking">
 
-            <h2>احجز موعدك</h2>
+
+            <h2>
+                احجز موعدك
+            </h2>
+
 
             <p class="subtitle">
-                يرجى إدخال بياناتك لإتمام الحجز
+                أدخل معلوماتك واختر الموعد المناسب لك
             </p>
+
+
+
+            <!-- رسالة الخطأ -->
+
+            {% if error %}
+
+            <div class="error-message">
+
+                {{ error }}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- نموذج الحجز -->
 
             <form method="POST">
 
-                <div class="form-group">
-                    <label for="name">الاسم الكامل</label>
+
+                <!-- الاسم -->
+
+                <div class="field">
+
+                    <label>
+                        الاسم
+                    </label>
 
                     <input
                         type="text"
-                        id="name"
                         name="name"
                         placeholder="أدخل اسمك"
-                        required
-                    >
+                        required>
+
                 </div>
 
 
-                <div class="form-group">
-                    <label for="phone">رقم الهاتف</label>
+
+                <!-- الهاتف -->
+
+                <div class="field">
+
+                    <label>
+                        رقم الهاتف
+                    </label>
 
                     <input
                         type="tel"
-                        id="phone"
                         name="phone"
-                        placeholder="أدخل رقم الهاتف"
-                        required
-                    >
-                </div>
-
-
-                <div class="row">
-
-                    <div class="form-group">
-                        <label for="date">التاريخ</label>
-
-                        <input
-                            type="date"
-                            id="date"
-                            name="date"
-                            required
-                        >
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="time">الوقت</label>
-
-                        <input
-                            type="time"
-                            id="time"
-                            name="time"
-                            required
-                        >
-                    </div>
+                        placeholder="أدخل رقم هاتفك"
+                        required>
 
                 </div>
 
 
-                <button type="submit">
+
+                <!-- التاريخ -->
+
+                <div class="field">
+
+                    <label>
+                        التاريخ
+                    </label>
+
+                    <input
+                        type="date"
+                        name="date"
+                        required>
+
+                </div>
+
+
+
+                <!-- الوقت -->
+
+                <div class="field">
+
+                    <label>
+                        الوقت
+                    </label>
+
+                    <input
+                        type="time"
+                        name="time"
+                        required>
+
+                </div>
+
+
+
+                <!-- زر الحجز -->
+
+                <button
+                    type="submit"
+                    class="booking-button">
+
                     تأكيد الحجز ✨
+
                 </button>
 
-                <p class="note">
-                    سيتم إرسال إشعار عند تسجيل الحجز بنجاح
-                </p>
 
             </form>
 
+
         </div>
 
+
     </div>
+
+
+
+    <!-- =========================
+         JavaScript
+    ========================== -->
+
+    <script>
+
+
+        function closeSuccess() {
+
+            const popup =
+                document.getElementById("successPopup");
+
+
+            if (popup) {
+
+                popup.style.opacity = "0";
+
+                popup.style.transform =
+                    "translate(-50%, -20px)";
+
+                popup.style.transition =
+                    "0.3s";
+
+
+                setTimeout(function () {
+
+                    popup.remove();
+
+                }, 300);
+
+            }
+
+        }
+
+
+
+        // إخفاء رسالة النجاح تلقائيًا بعد 6 ثوانٍ
+
+        setTimeout(function () {
+
+            closeSuccess();
+
+        }, 6000);
+
+
+    </script>
+
 
 </body>
 
