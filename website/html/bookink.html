@@ -1,42 +1,371 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
-    <title>Maw3dy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy | حجز موعد</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f5ff, #eef7ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            min-height: 570px;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(70, 60, 100, 0.12);
+            display: flex;
+        }
+
+        /* الجانب التعريفي */
+        .welcome {
+            width: 45%;
+            background: linear-gradient(145deg, #7567d8, #9b8de8);
+            color: white;
+            padding: 55px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome::before,
+        .welcome::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .welcome::before {
+            width: 230px;
+            height: 230px;
+            top: -80px;
+            left: -80px;
+        }
+
+        .welcome::after {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            right: -100px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome h1 {
+            font-size: 38px;
+            line-height: 1.35;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome p {
+            font-size: 17px;
+            line-height: 1.9;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        /* نموذج الحجز */
+        .booking {
+            width: 55%;
+            padding: 50px 55px;
+        }
+
+        .booking h2 {
+            color: #302b45;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #403b52;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e1dfea;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            background: #faf9fc;
+            transition: 0.25s;
+        }
+
+        input:focus {
+            border-color: #7567d8;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(117, 103, 216, 0.1);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            width: 50%;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #7567d8, #9586e7);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+            margin-top: 5px;
+            box-shadow: 0 8px 18px rgba(117, 103, 216, 0.22);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 11px 22px rgba(117, 103, 216, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .note {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        /* الهاتف */
+        @media (max-width: 750px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                flex-direction: column;
+                border-radius: 22px;
+            }
+
+            .welcome {
+                width: 100%;
+                padding: 35px 25px;
+                min-height: 280px;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+
+            .welcome p {
+                font-size: 14px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .booking {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            .booking h2 {
+                font-size: 24px;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .row .form-group {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>نظام الحجز Maw3dy 🌷</h1>
+    <div class="container">
 
-    <form method="POST">
+        <!-- القسم الترحيبي -->
+        <div class="welcome">
 
-        <label>الاسم:</label>
-        <br>
-        <input type="text" name="name" required>
-        <br><br>
+            <div class="logo">
+                ✦ Maw3dy
+            </div>
 
-        <label>رقم الهاتف:</label>
-        <br>
-        <input type="text" name="phone" required>
-        <br><br>
+            <h1>
+                احجز موعدك<br>
+                بكل سهولة ✨
+            </h1>
 
-        <label>التاريخ:</label>
-        <br>
-        <input type="date" name="date" required>
-        <br><br>
+            <p>
+                اختر الموعد المناسب لك وأرسل طلب الحجز
+                في ثوانٍ بسيطة.
+            </p>
 
-        <label>الوقت:</label>
-        <br>
-        <input type="time" name="time" required>
-        <br><br>
+            <div class="features">
 
-        <button type="submit">
-            احجز الآن
-        </button>
+                <div class="feature">
+                    ✓ حجز سريع وسهل
+                </div>
 
-    </form>
+                <div class="feature">
+                    ✓ تأكيد الموعد
+                </div>
+
+                <div class="feature">
+                    ✓ إشعار فوري بالحجز
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- نموذج الحجز -->
+        <div class="booking">
+
+            <h2>احجز موعدك</h2>
+
+            <p class="subtitle">
+                يرجى إدخال بياناتك لإتمام الحجز
+            </p>
+
+            <form method="POST">
+
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="أدخل اسمك"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="أدخل رقم الهاتف"
+                        required
+                    >
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <label for="date">التاريخ</label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="time">الوقت</label>
+
+                        <input
+                            type="time"
+                            id="time"
+                            name="time"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+                    تأكيد الحجز ✨
+                </button>
+
+                <p class="note">
+                    سيتم إرسال إشعار عند تسجيل الحجز بنجاح
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
 
