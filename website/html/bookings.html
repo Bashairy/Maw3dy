@@ -1,12 +1,16 @@
-
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Maw3dy | لوحة المواعيد</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy - لوحة الحجوزات</title>
+
 
     <style>
 
@@ -14,120 +18,164 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
+
 
         body {
+
+            font-family: Arial, Tahoma, sans-serif;
+
+            background: #f6f5fb;
+
             min-height: 100vh;
-            background: #f6f7fb;
+
             color: #302d3d;
+
         }
 
+
         /* =========================
-           الشريط العلوي
+           الهيدر
         ========================= */
 
         .header {
+
             background: white;
-            border-bottom: 1px solid #ececf2;
-            padding: 20px 7%;
+
+            padding: 20px 40px;
 
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+
+            justify-content: space-between;
+
+            box-shadow:
+                0 4px 20px rgba(40, 35, 70, 0.06);
+
         }
+
 
         .logo {
-            font-size: 26px;
+
+            font-size: 28px;
+
             font-weight: bold;
-            color: #7567d8;
+
+            color: #7668d8;
+
         }
 
-        .back-button {
-            text-decoration: none;
-            color: #7567d8;
-            background: #f0edff;
 
-            padding: 10px 18px;
+        .new-booking {
+
+            text-decoration: none;
+
+            background: #7668d8;
+
+            color: white;
+
+            padding: 11px 20px;
+
             border-radius: 10px;
 
             font-size: 14px;
 
             transition: 0.2s;
+
         }
 
-        .back-button:hover {
-            background: #e5e0ff;
+
+        .new-booking:hover {
+
+            background: #6658c9;
+
         }
 
 
         /* =========================
-           المحتوى الرئيسي
+           المحتوى
         ========================= */
 
         .container {
-            width: 86%;
-            max-width: 1150px;
 
-            margin: 45px auto;
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
         }
 
 
-        /* =========================
-           العنوان
-        ========================= */
+        .page-title {
 
-        .top-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin-bottom: 25px;
 
-            margin-bottom: 30px;
         }
 
-        .title h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
+
+        .page-title h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 7px;
+
         }
 
-        .title p {
-            color: #858494;
+
+        .page-title p {
+
+            color: #92909d;
+
             font-size: 14px;
+
         }
 
 
         /* =========================
-           عدد الحجوزات
+           بطاقة العدد
         ========================= */
 
-        .count-card {
+        .total-card {
+
             background: white;
 
             border-radius: 18px;
 
-            padding: 18px 25px;
+            padding: 22px;
 
-            min-width: 160px;
+            margin-bottom: 30px;
 
-            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
+            box-shadow:
+                0 8px 30px rgba(40, 35, 70, 0.06);
 
-            text-align: center;
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
         }
 
-        .count-card span {
-            display: block;
+
+        .total-card span {
 
             color: #858494;
 
-            font-size: 13px;
+            font-size: 14px;
 
-            margin-bottom: 5px;
         }
 
-        .count-card strong {
-            font-size: 28px;
 
-            color: #7567d8;
+        .total-number {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #7668d8;
+
         }
 
 
@@ -136,11 +184,14 @@
         ========================= */
 
         .bookings-grid {
+
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 20px;
+
         }
 
 
@@ -149,228 +200,304 @@
         ========================= */
 
         .booking-card {
+
             background: white;
 
             border-radius: 20px;
 
-            padding: 24px;
+            padding: 22px;
 
-            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
-
-            border: 1px solid #eeeeF4;
+            box-shadow:
+                0 8px 30px rgba(40, 35, 70, 0.07);
 
             transition: 0.25s;
+
         }
+
 
         .booking-card:hover {
-            transform: translateY(-4px);
 
-            box-shadow: 0 12px 30px rgba(50, 45, 80, 0.10);
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 35px rgba(40, 35, 70, 0.10);
+
         }
 
 
-        /* أعلى البطاقة */
-
         .card-top {
+
             display: flex;
 
             justify-content: space-between;
 
             align-items: center;
 
-            margin-bottom: 22px;
+            margin-bottom: 18px;
+
         }
 
 
-        /* رقم الحجز */
-
         .booking-number {
-            width: 42px;
-            height: 42px;
 
-            border-radius: 12px;
+            width: 35px;
 
-            background: #f0edff;
+            height: 35px;
 
-            color: #7567d8;
+            border-radius: 50%;
+
+            background: #f0eefb;
+
+            color: #7668d8;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             font-weight: bold;
+
         }
 
 
-        /* حالة الحجز */
+        /* =========================
+           الحالات
+        ========================= */
 
         .status {
-            background: #e9f8ef;
 
-            color: #239653;
-
-            padding: 7px 12px;
+            padding: 7px 11px;
 
             border-radius: 20px;
 
             font-size: 12px;
 
             font-weight: bold;
+
         }
 
 
-        /* اسم العميل */
+        .status.pending {
 
-        .customer-name {
-            font-size: 20px;
+            background: #fff7df;
+
+            color: #c28a00;
+
+        }
+
+
+        .status.confirmed {
+
+            background: #e9f8ef;
+
+            color: #239653;
+
+        }
+
+
+        /* =========================
+           بيانات الحجز
+        ========================= */
+
+        .booking-name {
+
+            font-size: 19px;
 
             font-weight: bold;
 
-            margin-bottom: 18px;
+            margin-bottom: 15px;
+
         }
 
 
-        /* معلومات الحجز */
-
         .info {
+
             display: flex;
 
             align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 0;
+
+            color: #777582;
+
+            font-size: 13px;
+
+        }
+
+
+        .info strong {
+
+            color: #302d3d;
+
+        }
+
+
+        /* =========================
+           الأزرار
+        ========================= */
+
+        .actions {
+
+            display: flex;
 
             gap: 10px;
 
-            margin: 12px 0;
+            margin-top: 18px;
 
-            color: #666476;
-
-            font-size: 14px;
         }
 
 
-        .icon {
-            width: 34px;
-            height: 34px;
+        .actions form {
 
-            border-radius: 9px;
+            flex: 1;
 
-            background: #f7f6fb;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            font-size: 16px;
-
-            flex-shrink: 0;
         }
 
 
-        /* الخط الفاصل */
+        .action-button {
 
-        .divider {
-            height: 1px;
+            width: 100%;
 
-            background: #eeeeF3;
+            border: none;
 
-            margin: 20px 0;
+            padding: 11px 8px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
         }
 
 
-        /* رقم الحجز */
+        .confirm-button {
 
-        .booking-id {
-            color: #a09eaa;
+            background: #e9f8ef;
 
-            font-size: 11px;
+            color: #239653;
+
+        }
+
+
+        .confirm-button:hover {
+
+            background: #d5f1df;
+
+        }
+
+
+        .delete-button {
+
+            background: #fff0f0;
+
+            color: #d9534f;
+
+        }
+
+
+        .delete-button:hover {
+
+            background: #ffe0e0;
+
         }
 
 
         /* =========================
-           عدم وجود حجوزات
+           حالة عدم وجود حجوزات
         ========================= */
 
         .empty {
+
             background: white;
 
-            border-radius: 22px;
+            border-radius: 20px;
 
-            padding: 70px 20px;
+            padding: 60px 20px;
 
             text-align: center;
 
-            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
+            box-shadow:
+                0 8px 30px rgba(40, 35, 70, 0.06);
+
         }
+
 
         .empty-icon {
+
             font-size: 55px;
 
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+
         }
+
 
         .empty h2 {
-            margin-bottom: 10px;
+
+            margin-bottom: 8px;
+
         }
+
 
         .empty p {
-            color: #8b8996;
+
+            color: #92909d;
 
             font-size: 14px;
+
         }
 
 
         /* =========================
-           الأجهزة المتوسطة
+           الجوال
         ========================= */
 
-        @media (max-width: 950px) {
+        @media (max-width: 900px) {
 
             .bookings-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
             }
 
         }
 
 
-        /* =========================
-           الهاتف
-        ========================= */
-
-        @media (max-width: 650px) {
+        @media (max-width: 600px) {
 
             .header {
-                padding: 18px 5%;
+
+                padding: 18px 20px;
+
             }
 
-            .logo {
-                font-size: 22px;
-            }
 
             .container {
-                width: 90%;
 
-                margin: 30px auto;
+                margin-top: 25px;
+
             }
 
-            .top-section {
-                flex-direction: column;
-
-                align-items: stretch;
-
-                gap: 20px;
-            }
-
-            .title h1 {
-                font-size: 27px;
-            }
-
-            .count-card {
-                width: 100%;
-            }
 
             .bookings-grid {
+
                 grid-template-columns: 1fr;
+
+            }
+
+
+            .page-title h1 {
+
+                font-size: 25px;
+
             }
 
         }
@@ -384,72 +511,70 @@
 
 
     <!-- =========================
-         الشريط العلوي
-    ========================= -->
+         الهيدر
+    ========================== -->
 
     <header class="header">
 
         <div class="logo">
-            ✦ Maw3dy
+            Maw3dy
         </div>
 
-        <a href="/" class="back-button">
-            ← حجز جديد
+
+        <a
+            href="/"
+            class="new-booking">
+
+            + حجز جديد
+
         </a>
 
     </header>
 
 
+
     <!-- =========================
          المحتوى
-    ========================= -->
+    ========================== -->
 
     <main class="container">
 
 
-        <!-- العنوان وعدد الحجوزات -->
+        <div class="page-title">
 
-        <div class="top-section">
+            <h1>
+                لوحة المواعيد 📅
+            </h1>
 
-            <div class="title">
+            <p>
+                إدارة ومتابعة جميع الحجوزات
+            </p>
 
-                <h1>
-                    لوحة المواعيد 📅
-                </h1>
-
-                <p>
-                    جميع الحجوزات المسجلة في Maw3dy
-                </p>
-
-            </div>
+        </div>
 
 
-            <div class="count-card">
 
-                <span>
-                    إجمالي الحجوزات
-                </span>
+        <!-- عدد الحجوزات -->
 
-                <strong>
-                    {{ bookings|length }}
-                </strong>
+        <div class="total-card">
 
+            <span>
+                إجمالي الحجوزات
+            </span>
+
+            <div class="total-number">
+                {{ bookings|length }}
             </div>
 
         </div>
 
 
-        <!-- =========================
-             إذا كانت هناك حجوزات
-        ========================= -->
 
         {% if bookings %}
 
 
         <div class="bookings-grid">
 
-
-            <!-- بداية تكرار الحجوزات -->
 
             {% for booking in bookings %}
 
@@ -461,83 +586,147 @@
 
                 <div class="card-top">
 
+
                     <div class="booking-number">
+
                         {{ loop.index }}
+
                     </div>
 
-                    <div class="status">
+
+                    {% if booking[5] == "confirmed" %}
+
+                    <div class="status confirmed">
+
                         ✓ مؤكد
+
                     </div>
 
+                    {% else %}
+
+                    <div class="status pending">
+
+                        ⏳ قيد الانتظار
+
+                    </div>
+
+                    {% endif %}
+
+
                 </div>
 
 
-                <!-- اسم العميل -->
 
-                <div class="customer-name">
+                <!-- الاسم -->
+
+                <div class="booking-name">
+
                     {{ booking[1] }}
+
                 </div>
 
 
-                <!-- رقم الهاتف -->
+
+                <!-- الهاتف -->
 
                 <div class="info">
 
-                    <div class="icon">
-                        📞
-                    </div>
+                    📞
 
                     <span>
-                        {{ booking[2] }}
+                        الهاتف:
                     </span>
 
+                    <strong>
+                        {{ booking[2] }}
+                    </strong>
+
                 </div>
+
 
 
                 <!-- التاريخ -->
 
                 <div class="info">
 
-                    <div class="icon">
-                        📅
-                    </div>
+                    📅
 
                     <span>
-                        {{ booking[3] }}
+                        التاريخ:
                     </span>
 
+                    <strong>
+                        {{ booking[3] }}
+                    </strong>
+
                 </div>
+
 
 
                 <!-- الوقت -->
 
                 <div class="info">
 
-                    <div class="icon">
-                        ⏰
-                    </div>
+                    ⏰
 
                     <span>
-                        {{ booking[4] }}
+                        الوقت:
                     </span>
+
+                    <strong>
+                        {{ booking[4] }}
+                    </strong>
 
                 </div>
 
 
-                <div class="divider"></div>
+
+                <!-- الأزرار -->
+
+                <div class="actions">
 
 
-                <!-- رقم الحجز -->
+                    {% if booking[5] != "confirmed" %}
 
-                <div class="booking-id">
-                    رقم الحجز: #{{ booking[0] }}
+                    <form
+                        method="POST"
+                        action="/confirm/{{ booking[0] }}">
+
+                        <button
+                            type="submit"
+                            class="action-button confirm-button">
+
+                            ✓ تأكيد الحجز
+
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+
+
+                    <form
+                        method="POST"
+                        action="/delete/{{ booking[0] }}"
+                        onsubmit="return confirm('هل أنت متأكد من حذف هذا الحجز؟');">
+
+                        <button
+                            type="submit"
+                            class="action-button delete-button">
+
+                            🗑 حذف
+
+                        </button>
+
+                    </form>
+
+
                 </div>
 
 
             </div>
 
-
-            <!-- نهاية بطاقة الحجز -->
 
             {% endfor %}
 
@@ -545,12 +734,10 @@
         </div>
 
 
-        <!-- =========================
-             إذا لم توجد حجوزات
-        ========================= -->
-
         {% else %}
 
+
+        <!-- لا توجد حجوزات -->
 
         <div class="empty">
 
@@ -559,11 +746,11 @@
             </div>
 
             <h2>
-                لا توجد حجوزات حتى الآن
+                لا توجد حجوزات حاليًا
             </h2>
 
             <p>
-                عندما يقوم أحد العملاء بالحجز سيظهر الموعد هنا.
+                ستظهر الحجوزات هنا عند قيام العملاء بالحجز.
             </p>
 
         </div>
@@ -578,4 +765,3 @@
 </body>
 
 </html>
-

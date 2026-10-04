@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 from database.database import (
     add_booking,
     get_bookings,
-    booking_exists
+    booking_exists,
+    confirm_booking,
+    delete_booking
 )
 
 from bot.telegram_bot import notify_booking
@@ -33,7 +35,7 @@ def home():
                 error="⚠️ هذا الموعد محجوز بالفعل، يرجى اختيار وقت آخر."
             )
 
-        # حفظ الحجز في قاعدة البيانات
+        # حفظ الحجز
         add_booking(
             name,
             phone,
@@ -41,7 +43,7 @@ def home():
             time
         )
 
-        # إرسال الإشعار إلى Telegram
+        # إرسال إشعار إلى Telegram
         notify_booking(
             name,
             phone,
@@ -49,7 +51,7 @@ def home():
             time
         )
 
-        # عرض رسالة نجاح جميلة في نفس الصفحة
+        # عرض رسالة النجاح
         return render_template(
             "bookink.html",
             success=True,
@@ -60,6 +62,10 @@ def home():
 
     return render_template("bookink.html")
 
+
+# ==========================================
+# لوحة الحجوزات
+# ==========================================
 
 @app.route("/bookings")
 def bookings():
@@ -72,5 +78,30 @@ def bookings():
     )
 
 
+# ==========================================
+# تأكيد الحجز
+# ==========================================
+
+@app.route("/confirm/<int:booking_id>", methods=["POST"])
+def confirm(booking_id):
+
+    confirm_booking(booking_id)
+
+    return redirect(url_for("bookings"))
+
+
+# ==========================================
+# حذف الحجز
+# ==========================================
+
+@app.route("/delete/<int:booking_id>", methods=["POST"])
+def delete(booking_id):
+
+    delete_booking(booking_id)
+
+    return redirect(url_for("bookings"))
+
+
 if __name__ == "__main__":
+
     app.run(debug=True)

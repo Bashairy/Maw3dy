@@ -9,6 +9,7 @@ def connect_db():
 
 
 def create_db():
+
     connection = connect_db()
     cursor = connection.cursor()
 
@@ -19,7 +20,7 @@ def create_db():
             phone TEXT NOT NULL,
             date TEXT NOT NULL,
             time TEXT NOT NULL,
-            status TEXT NOT NULL DEFAULT 'confirmed'
+            status TEXT NOT NULL DEFAULT 'pending'
         )
     """)
 
@@ -28,19 +29,28 @@ def create_db():
 
 
 def add_booking(name, phone, date, time):
+
     connection = connect_db()
     cursor = connection.cursor()
 
     cursor.execute("""
-        INSERT INTO booking (name, phone, date, time)
-        VALUES (?, ?, ?, ?)
-    """, (name, phone, date, time))
+        INSERT INTO booking
+        (name, phone, date, time, status)
+        VALUES (?, ?, ?, ?, ?)
+    """, (
+        name,
+        phone,
+        date,
+        time,
+        "pending"
+    ))
 
     connection.commit()
     connection.close()
 
 
 def booking_exists(date, time):
+
     connection = connect_db()
     cursor = connection.cursor()
 
@@ -48,6 +58,7 @@ def booking_exists(date, time):
         SELECT 1
         FROM booking
         WHERE date = ? AND time = ?
+        AND status != 'deleted'
         LIMIT 1
     """, (date, time))
 
@@ -55,14 +66,21 @@ def booking_exists(date, time):
 
     connection.close()
 
-    return exists    
+    return exists
 
 
 def get_bookings():
+
     connection = connect_db()
     cursor = connection.cursor()
 
-    cursor.execute("SELECT * FROM booking")
+    cursor.execute("""
+        SELECT *
+        FROM booking
+        WHERE status != 'deleted'
+        ORDER BY date, time
+    """)
+
     bookings = cursor.fetchall()
 
     connection.close()
@@ -70,6 +88,37 @@ def get_bookings():
     return bookings
 
 
+def confirm_booking(booking_id):
+
+    connection = connect_db()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE booking
+        SET status = 'confirmed'
+        WHERE id = ?
+    """, (booking_id,))
+
+    connection.commit()
+    connection.close()
+
+
+def delete_booking(booking_id):
+
+    connection = connect_db()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM booking
+        WHERE id = ?
+    """, (booking_id,))
+
+    connection.commit()
+    connection.close()
+
+
 if __name__ == "__main__":
+
     create_db()
+
     print("Database Created")
