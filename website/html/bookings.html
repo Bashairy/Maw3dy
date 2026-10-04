@@ -1,41 +1,581 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
-    <title>الحجوزات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maw3dy | لوحة المواعيد</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f6f7fb;
+            color: #302d3d;
+        }
+
+        /* =========================
+           الشريط العلوي
+        ========================= */
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #ececf2;
+            padding: 20px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #7567d8;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: #7567d8;
+            background: #f0edff;
+
+            padding: 10px 18px;
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .back-button:hover {
+            background: #e5e0ff;
+        }
+
+
+        /* =========================
+           المحتوى الرئيسي
+        ========================= */
+
+        .container {
+            width: 86%;
+            max-width: 1150px;
+
+            margin: 45px auto;
+        }
+
+
+        /* =========================
+           العنوان
+        ========================= */
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .title p {
+            color: #858494;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           عدد الحجوزات
+        ========================= */
+
+        .count-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px 25px;
+
+            min-width: 160px;
+
+            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
+
+            text-align: center;
+        }
+
+        .count-card span {
+            display: block;
+
+            color: #858494;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .count-card strong {
+            font-size: 28px;
+
+            color: #7567d8;
+        }
+
+
+        /* =========================
+           شبكة الحجوزات
+        ========================= */
+
+        .bookings-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================
+           بطاقة الحجز
+        ========================= */
+
+        .booking-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 24px;
+
+            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
+
+            border: 1px solid #eeeeF4;
+
+            transition: 0.25s;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow: 0 12px 30px rgba(50, 45, 80, 0.10);
+        }
+
+
+        /* أعلى البطاقة */
+
+        .card-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* رقم الحجز */
+
+        .booking-number {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: #f0edff;
+
+            color: #7567d8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        /* حالة الحجز */
+
+        .status {
+            background: #e9f8ef;
+
+            color: #239653;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* اسم العميل */
+
+        .customer-name {
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* معلومات الحجز */
+
+        .info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 12px 0;
+
+            color: #666476;
+
+            font-size: 14px;
+        }
+
+
+        .icon {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 9px;
+
+            background: #f7f6fb;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* الخط الفاصل */
+
+        .divider {
+            height: 1px;
+
+            background: #eeeeF3;
+
+            margin: 20px 0;
+        }
+
+
+        /* رقم الحجز */
+
+        .booking-id {
+            color: #a09eaa;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           عدم وجود حجوزات
+        ========================= */
+
+        .empty {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            box-shadow: 0 7px 25px rgba(50, 45, 80, 0.06);
+        }
+
+        .empty-icon {
+            font-size: 55px;
+
+            margin-bottom: 20px;
+        }
+
+        .empty h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            color: #8b8996;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           الأجهزة المتوسطة
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .bookings-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* =========================
+           الهاتف
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 18px 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .container {
+                width: 90%;
+
+                margin: 30px auto;
+            }
+
+            .top-section {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 20px;
+            }
+
+            .title h1 {
+                font-size: 27px;
+            }
+
+            .count-card {
+                width: 100%;
+            }
+
+            .bookings-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <h1>جميع الحجوزات 📋</h1>
 
-    <table border="1">
+    <!-- =========================
+         الشريط العلوي
+    ========================= -->
 
-        <tr>
-            <th>ID</th>
-            <th>الاسم</th>
-            <th>الهاتف</th>
-            <th>التاريخ</th>
-            <th>الوقت</th>
-            <th>الحالة</th>
-        </tr>
+    <header class="header">
 
-        {% for booking in bookings %}
+        <div class="logo">
+            ✦ Maw3dy
+        </div>
 
-        <tr>
-            <td>{{ booking[0] }}</td>
-            <td>{{ booking[1] }}</td>
-            <td>{{ booking[2] }}</td>
-            <td>{{ booking[3] }}</td>
-            <td>{{ booking[4] }}</td>
-            <td>{{ booking[5] }}</td>
-        </tr>
+        <a href="/" class="back-button">
+            ← حجز جديد
+        </a>
 
-        {% endfor %}
+    </header>
 
-    </table>
+
+    <!-- =========================
+         المحتوى
+    ========================= -->
+
+    <main class="container">
+
+
+        <!-- العنوان وعدد الحجوزات -->
+
+        <div class="top-section">
+
+            <div class="title">
+
+                <h1>
+                    لوحة المواعيد 📅
+                </h1>
+
+                <p>
+                    جميع الحجوزات المسجلة في Maw3dy
+                </p>
+
+            </div>
+
+
+            <div class="count-card">
+
+                <span>
+                    إجمالي الحجوزات
+                </span>
+
+                <strong>
+                    {{ bookings|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             إذا كانت هناك حجوزات
+        ========================= -->
+
+        {% if bookings %}
+
+
+        <div class="bookings-grid">
+
+
+            <!-- بداية تكرار الحجوزات -->
+
+            {% for booking in bookings %}
+
+
+            <div class="booking-card">
+
+
+                <!-- أعلى البطاقة -->
+
+                <div class="card-top">
+
+                    <div class="booking-number">
+                        {{ loop.index }}
+                    </div>
+
+                    <div class="status">
+                        ✓ مؤكد
+                    </div>
+
+                </div>
+
+
+                <!-- اسم العميل -->
+
+                <div class="customer-name">
+                    {{ booking[1] }}
+                </div>
+
+
+                <!-- رقم الهاتف -->
+
+                <div class="info">
+
+                    <div class="icon">
+                        📞
+                    </div>
+
+                    <span>
+                        {{ booking[2] }}
+                    </span>
+
+                </div>
+
+
+                <!-- التاريخ -->
+
+                <div class="info">
+
+                    <div class="icon">
+                        📅
+                    </div>
+
+                    <span>
+                        {{ booking[3] }}
+                    </span>
+
+                </div>
+
+
+                <!-- الوقت -->
+
+                <div class="info">
+
+                    <div class="icon">
+                        ⏰
+                    </div>
+
+                    <span>
+                        {{ booking[4] }}
+                    </span>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <!-- رقم الحجز -->
+
+                <div class="booking-id">
+                    رقم الحجز: #{{ booking[0] }}
+                </div>
+
+
+            </div>
+
+
+            <!-- نهاية بطاقة الحجز -->
+
+            {% endfor %}
+
+
+        </div>
+
+
+        <!-- =========================
+             إذا لم توجد حجوزات
+        ========================= -->
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📅
+            </div>
+
+            <h2>
+                لا توجد حجوزات حتى الآن
+            </h2>
+
+            <p>
+                عندما يقوم أحد العملاء بالحجز سيظهر الموعد هنا.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </main>
+
 
 </body>
 
 </html>
+
